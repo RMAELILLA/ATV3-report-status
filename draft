@@ -1,1 +1,160 @@
-Report Status
+<!-- Report Status -->
+@extends('layouts.layout')
+
+@section('title', 'Report Status')
+
+@section('content')
+    <div class="p-12">
+        <div class="flex items-center justify-between">
+            <button id="theme-toggle" class="bg-[#475998] text-white px-6 py-2 rounded-lg font-medium">
+                Toggle Theme
+            </button>
+            <button
+                class="bg-[#475998] text-white px-6 py-2 rounded-lg font-medium dark:bg-dark-yinMn-blue dark:text-dark-white">
+                Submit New Report
+            </button>
+        </div>
+        <div class="title text-[#475998] text-center font-bold font-montserrat text-3xl pb-8 dark:text-[#5F6E82]">
+            REPORT STATUS
+        </div>
+
+        <div class="head-table">
+            <!-- Minimized Show Items and Search Bar -->
+            <div class="pb-4 text-sm show-items font-lato">
+                <span class="dark:text-[#F2F2F2]">
+                    Show items:
+                </span>
+                <select name="show-items" id="show-items"
+                    class="align-middle h-[30px] w-[94px] text-[16px] rounded-[5px] ml-[30px] font-inter bg-[#FFFFFF] pt-[4px] border-0 dark:bg-dark-white dark:text-[#F2F2F2]">
+                    <option value="10">5</option>
+                    <option value="25">10</option>
+                    <option value="50">20</option>
+                    <option value="100">30</option>
+                </select>
+            </div>
+            <div class="pb-12">
+                <div class="flex items-center pb-[30px]">
+                    <div class="relative search">
+                        <input type="text"
+                            class="bg-white h-[50px] w-[350px] border-none pt-[9px] pr-[4px] pb-[9px] pl-[45px] rounded-lg dark:bg-[#303B47] dark:text-[#F2F2F2] dark:placeholder-[#F2F2F2]"
+                            placeholder="Search">
+                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-[#F2F2F2]"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"></circle>
+                            <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round"></line>
+                        </svg>
+                    </div>
+                    <div class="flex ml-auto space-x-4">
+                        <div class="filter">
+                            <select name="filter" id="filter"
+                                class="bg-yinmn-blue w-[160px] h-[50px] rounded-[10px] text-white border-0 dark:bg-[#5F6E82]">
+                                <option value="" class="text-black bg-white hover:bg-honey-dew">Filter</option>
+                                <option value="application-id" class="text-black bg-white">Application ID</option>
+                                <option value="name" class="text-black bg-white">Name</option>
+                                <option value="team-name" class="text-black bg-white">Team Name</option>
+                                <option value="department" class="text-black bg-white">Department</option>
+                                <option value="company" class="text-black bg-white">Company</option>
+                                <option value="university" class="text-black bg-white">University</option>
+                                <option value="date-in" class="text-black bg-white">Date In</option>
+                                <option value="time-in" class="text-black bg-white">Time In</option>
+                                <option value="date-out" class="text-black bg-white">Date Out</option>
+                                <option value="time-out" class="text-black bg-white">Time Out</option>
+                            </select>
+                        </div>
+                        <div class="export">
+                            <select name="export" id="export"
+                                class="bg-ghost-white w-[160px] h-[50px] rounded-[10px] border-0 dark:bg-[#4A5161] dark:text-[#F2F2F2]">
+                                <option value="" class="text-black bg-white hover:bg-honey-dew">Export</option>
+                                <option value="excel">Excel</option>
+                                <option value="csv">CSV</option>
+                                <option value="pdf">PDF</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                        <thead class="text-xs text-white bg-[#475998] font-inter dark:bg-[#5F6E82] dark:text-[#F2F2F2]">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 font-medium text-center border-r-2 dark:border-dark-white">Report ID
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 font-medium text-center border-r-2 dark:border-dark-white">Ticket ID
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 font-medium text-center border-r-2 dark:border-dark-white">Subject</th>
+                                <th scope="col"
+                                    class="px-6 py-3 font-medium text-center border-r-2 dark:border-dark-white">Files</th>
+                                <th scope="col"
+                                    class="px-6 py-3 font-medium text-center border-r-2 dark:border-dark-white">Status</th>
+                                <th scope="col"
+                                    class="px-6 py-3 font-medium text-center border-r-2 dark:border-dark-white">Date Fixed
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                class="bg-white dark:bg-[#303B47] even:bg-gray-50 even:dark:bg-[#47515B] border-b dark:border-gray-700 font-inter">
+                                <td class="px-6 py-4 font-medium text-center text-gray-900 dark:text-white">XXXX</td>
+                                <td class="px-6 py-4 text-center">XXXXXXXXXXXXXXXX</td>
+                                <td class="px-6 py-4 text-center">Lorem ipsum dolor sit amet, consect...</td>
+                                <td class="px-6 py-4 text-center">
+                                    <img src="attachment-icon.png" alt="attachment" width="20" height="20">
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-4 py-1 text-white bg-orange-500 rounded-full">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 text-center">MM/DD/YYYY</td>
+                            </tr>
+                            <tr
+                                class="bg-white dark:bg-[#303B47] even:bg-gray-50 even:dark:bg-[#47515B] border-b dark:border-gray-700 font-inter">
+                                <td class="px-6 py-4 font-medium text-center text-gray-900 dark:text-white">XXXX</td>
+                                <td class="px-6 py-4 text-center">XXXXXXXXXXXXXXXX</td>
+                                <td class="px-6 py-4 text-center">Lorem ipsum dolor sit amet, consect...</td>
+                                <td class="px-6 py-4 text-center">
+                                    <img src="attachment-icon.png" alt="attachment" width="20" height="20">
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-4 py-1 text-white bg-orange-500 rounded-full">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 text-center">MM/DD/YYYY</td>
+                            </tr>
+                            <tr
+                                class="bg-white dark:bg-[#303B47] even:bg-gray-50 even:dark:bg-[#47515B] border-b dark:border-gray-700 font-inter">
+                                <td class="px-6 py-4 font-medium text-center text-gray-900 dark:text-white">XXXX</td>
+                                <td class="px-6 py-4 text-center">XXXXXXXXXXXXXXXX</td>
+                                <td class="px-6 py-4 text-center">Lorem ipsum dolor sit amet, consect...</td>
+                                <td class="px-6 py-4 text-center">
+                                    <img src="attachment-icon.png" alt="attachment" width="20" height="20">
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <span class="px-4 py-1 text-white bg-orange-500 rounded-full">Pending</span>
+                                </td>
+                                <td class="px-6 py-4 text-center">MM/DD/YYYY</td>
+                            </tr>
+                            <!-- Add more rows as necessary -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-12">
+                <button class="w-24 h-10 bg-white rounded-lg dark:bg-[#303B47] dark:text-[#F2F2F2]">Previous</button>
+                <div class="dark:text-[#F2F2F2]">
+                    Page <span>1</span> of <span>10</span>
+                </div>
+                <button class="w-24 h-10 bg-white rounded-lg dark:bg-[#303B47] dark:text-[#F2F2F2]">Next</button>
+            </div>
+        </div>
+
+        <script>
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+            });
+        </script>
+    @endsection
+
